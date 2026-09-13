@@ -2,3 +2,5 @@ node_modules/
 *.tar.gz
 *.tgz
 *.log
+.vercel/
+*.zip
