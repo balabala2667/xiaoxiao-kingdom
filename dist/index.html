@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#174d42"><title>小小战大军 · 知识守护王国</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="./" aria-label="小小战大军首页"><span class="brand-mark">♜</span><span>小小战大军<small>每一点知识，都是守护的力量</small></span></a>
+    <div class="top-actions"><span class="local-tag">● 本机冒险</span><button id="profileButton" class="profile-button">♙ <span id="playerName"></span> ▾</button></div>
+  </header>
+  <main>
+    <section class="welcome"><div><div class="eyebrow">THE LITTLE KINGDOM</div><h1>小小勇士，守护你的王国。</h1><p>答题集结军队，与盟友一起出发！</p></div><button id="helpButton" class="light-button">游戏指南 <span>↗</span></button></section>
+    <nav class="tabs" aria-label="游戏功能"><button class="tab active" data-tab="battle">⚑ 王国战场</button><button class="tab" data-tab="growth">♧ 成长营地</button><button class="tab" data-tab="rank">♛ 荣誉榜</button><button class="tab" data-tab="review">▤ 错题练习</button></nav>
+    <section id="battle" class="page">
+      <div class="settings card"><div class="settings-title"><span class="small-icon">▧</span><strong>冒险课程</strong></div><label>年级<select id="grade"><option value="1">一年级</option><option value="2">二年级</option></select></label><label>学期<select id="semester"><option value="1">上册</option><option value="2">下册</option></select></label><label>科目<select id="subject"><option value="math">数学</option><option value="chinese">语文</option></select></label><label>挑战难度<select id="difficulty"><option value="easy">简单</option><option value="normal">普通</option><option value="nightmare">噩梦</option></select></label><span class="curriculum">人教版方向 · 原创练习</span></div>
+      <div class="battle-grid">
+        <div class="battle-left">
+          <section class="arena card"><div class="arena-top"><div><span class="eyebrow">守护之旅</span><h2 id="stageTitle">第 01 关 · 晨光草原</h2></div><span id="battleStatus" class="status">准备出征</span></div>
+            <div class="map-wrap"><canvas id="map" aria-label="实时战场：你的国王在左侧，敌方国王在右侧，盟国在下方" role="img"></canvas><div class="map-hud"><div class="king-label"><span>⚑ 翡翠王国 <small>你</small></span><strong id="ourHearts">♥ ♥ ♥ ♥ ♥</strong></div><div class="king-label enemy"><span>赤岩王国 <small>电脑</small> ⚑</span><strong id="enemyHearts">♥ ♥ ♥ ♥ ♥</strong></div></div><div id="mapBanner" class="map-banner">知识准备就绪，王国等你出发</div><div class="map-bottom"><span id="armyCount">我方兵力 3</span><span id="mapClock">00:00</span><span id="bossStatus">每 3 关 · Boss 来袭</span></div></div>
+            <div class="battle-toolbar"><div><span class="tiny-label">战场指挥</span><div class="skill-row"><button id="healButton" class="skill" disabled><span>✚</span>治疗<small id="healTime">未解锁</small></button><button id="shieldButton" class="skill" disabled><span>◇</span>护盾<small id="shieldTime">未解锁</small></button><button id="ultimateButton" class="skill ultimate" disabled><span>ϟ</span>星光大招<small id="beanLabel">0 颗豆</small></button></div></div><div class="battle-actions"><button id="pauseButton" class="light-button" disabled>暂停</button><button id="startButton" class="primary-button">开始守护 <span>→</span></button></div></div>
+          </section>
+          <section class="alliance card"><div class="alliance-avatar">♜</div><div class="alliance-info"><h3>蓝湾王国 <span>电脑国家</span></h3><p id="allianceText">结为盟友，互不攻击，携手保护国王。</p><small id="allyHearts">生命 ♥ ♥ ♥ ♥ ♥</small></div><div class="alliance-actions"><button id="allianceButton" class="light-button">缔结联盟</button><button id="supportButton" class="light-button" disabled>派兵支援</button><button id="attackAllyButton" class="light-button" disabled>进攻蓝湾</button></div></section>
+          <div id="battleLog" class="battle-log" aria-live="polite">✦ 答对一题，两名小兵为你而战。</div>
+        </div>
+        <aside class="question card"><div class="question-header"><span class="subject-badge" id="subjectBadge">数</span><div><h2>知识补给站</h2><p id="questionMeta">一年级 · 数学 · 简单</p></div><button id="speakButton" class="icon-button" title="朗读题目" aria-label="朗读题目">◖))</button></div><div class="question-progress"><span id="questionCount">本关基础题量 10 题</span><span id="correctCount">答对 0</span></div><div class="progress-track"><div id="questionProgress"></div></div><div class="question-body"><span id="topic" class="topic">准备出发</span><h3 id="questionText">用知识的力量，<br>召唤你的第一支军队。</h3><p id="questionHint">点击「开始守护」，答对一题召唤两只小兵。</p><div id="answers" class="answers"></div><div id="feedback" class="feedback" aria-live="polite"></div><button id="nextQuestion" class="primary-button next-button" hidden>继续答题 →</button></div><div class="question-footer"><span>⚔ 答对 +2 小兵</span><span id="rewardLabel">✦ 答对 +10 积分</span></div></aside>
+      </div>
+      <section class="stats-row"><div class="stat-card"><span class="stat-icon gold">✦</span><div><small>可用积分</small><strong id="balance">0</strong></div><button data-open="growth" aria-label="前往兑换">↗</button></div><div class="stat-card"><span class="stat-icon green">♛</span><div><small>国王等级</small><strong id="kingLevel">Lv. 1</strong></div><button data-open="growth" aria-label="前往升级">↗</button></div><div class="stat-card"><span class="stat-icon purple">♧</span><div><small>出战伙伴</small><strong id="petName">尚未携带</strong></div><button data-open="growth" aria-label="前往宠物">↗</button></div><div class="stat-card"><span class="stat-icon blue">ϟ</span><div><small>充能豆</small><strong id="beans">0 <small id="bossProgress">Boss 0/2</small></strong></div><span class="stat-detail">击败 Boss 收集</span></div></section>
+    </section>
+    <section id="growth" class="page" hidden><div class="section-heading"><div><span class="eyebrow">GROW YOUR KINGDOM</span><h2>让每一次进步，都看得见。</h2><p>用答题积分升级王国。皮肤只改变外观，宠物最多携带一只。</p></div><strong id="shopBalance" class="balance-pill"></strong></div><div id="shop" class="shop-grid"></div></section>
+    <section id="rank" class="page" hidden><div class="section-heading"><div><span class="eyebrow">HALL OF KNOWLEDGE</span><h2>每一份努力，都值得被记住。</h2><p>仅展示这台设备上的真实玩家，按累计积分排名；兑换不会降低名次。</p></div><button id="newPlayer" class="primary-button">添加本机玩家 ＋</button></div><div id="rankTable" class="card ranking"></div></section>
+    <section id="review" class="page" hidden><div class="section-heading"><div><span class="eyebrow">ONE MORE TRY</span><h2>再想一想，你一定可以。</h2><p>战斗中的错题会收集在这里。复习不计战斗积分。</p></div></div><div id="reviewList" class="review-list"></div></section>
+    <footer><span>♜ 小小战大军 · 学一点，强一点。</span><span>进度保存在当前浏览器 · 原创基础题库，非官方教材题库</span></footer>
+  </main>
+  <dialog id="modal"><div id="modalContent"></div></dialog><div id="toast" role="status"></div>
+  <script type="module" src="app.js"></script>
+</body></html>
